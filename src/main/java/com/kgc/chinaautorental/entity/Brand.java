@@ -12,9 +12,9 @@ import java.io.Serializable;
  * @Description:
  * @Date: Create in 22:07 2019/8/14
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Data           // 添加setter getter 方法 重新toString()
+@AllArgsConstructor  // 添加了有参构造
+@NoArgsConstructor      // 添加了无参构造
 @Component
 public class Brand implements Serializable {
     private Integer id;    // 品牌id
