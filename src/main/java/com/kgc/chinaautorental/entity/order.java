@@ -31,6 +31,4 @@ public class order implements Serializable {
     private Date returnTime;        // 还车时间
     private Integer returnShopId;   // 还车地点门店id
     private Integer limitMileage;   // 限定总里程
-    //private String SS;//shan
-
 }
