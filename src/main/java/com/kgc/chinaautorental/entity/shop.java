@@ -18,10 +18,10 @@ import java.util.Date;
 @NoArgsConstructor
 @Component
 public class shop implements Serializable {
-    private Integer id;
-    private String shopName;
-    private String contactNumber;
-    private String address;
-    private Date business;
-    private Integer vehicle;
+    private Integer id;             // 门店id
+    private String shopName;        // 门店名称
+    private String contactNumber;   // 联系电话
+    private String address;         // 详细地址
+    private Date business;          // 营业时间
+    private Integer vehicle;        // 车辆id
 }

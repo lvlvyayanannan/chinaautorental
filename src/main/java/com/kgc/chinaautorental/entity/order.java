@@ -18,18 +18,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Component
 public class order implements Serializable {
-    private Integer id;
-    private Integer orderStatusId;
-    public Double orderPrice;
-    private String orderNum;
-    private Integer rentalMsgId;
-    private Integer lease;
-    public Double authorization;
-    private Integer vehicleMsgId;
-    private Date pickTime;
-    private Integer pickShopId;
-    private Date returnTime;
-    private Integer returnShopId;
-    private Integer limitMileage;
+    private Integer id;     //订单中心主键id
+    private Integer orderStatusId;      // 订单状态id
+    public Double orderPrice;       // 订单总价
+    private String orderNum;        // 订单号
+    private Integer rentalMsgId;    // 租车人信息
+    private Integer lease;          // 租期
+    public Double authorization;    // 取车时需刷预授权
+    private Integer vehicleMsgId;   // 车辆基本信息id
+    private Date pickTime;          // 取车时间
+    private Integer pickShopId;     // 取车地点门店id
+    private Date returnTime;        // 还车时间
+    private Integer returnShopId;   // 还车地点门店id
+    private Integer limitMileage;   // 限定总里程
 
 }

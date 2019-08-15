@@ -17,6 +17,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Component
 public class orderStatus implements Serializable {
-    private Integer id;
-    private String orderStatus;
+    private Integer id;             // 订单状态id
+    private String orderStatus;     // 订单状态
 }

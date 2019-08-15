@@ -17,6 +17,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Component
 public class VehicleModel implements Serializable {
-    private Integer id;
-    private String modelName;
+    private Integer id;         // 车型id
+    private String modelName;   // 车型名称
 }

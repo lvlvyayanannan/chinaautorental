@@ -17,7 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Component
 public class District implements Serializable {
-    private Integer id;
-    private Integer shopId;
-    private String districtName;
+    private Integer id;     // 地区id
+    private Integer shopId;     // 门店id
+    private String districtName;    // 地区名称
 }

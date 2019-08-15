@@ -18,15 +18,15 @@ import java.util.Date;
 @NoArgsConstructor
 @Component
 public class user implements Serializable {
-    private Integer id;
-    private String userName;
-    private String idNumber;
-    private Date inDate;
-    private String phone;
-    private String email;
-    private String address;
-    private String emergencyName;
-    private String emergencyPhone;
-    private String password;
-    private String paymentCode;
+    private Integer id;             // 我的信息主键id
+    private String userName;        // 姓名
+    private String idNumber;        // 证件号码 /身份证/驾驶证
+    private Date inDate;            // 有效期
+    private String phone;           // 手机号码
+    private String email;           // 电子邮件
+    private String address;         // 通信地址
+    private String emergencyName;   // 紧急联系人姓名
+    private String emergencyPhone;  // 紧急联系人电话
+    private String password;        // 登录密码
+    private String paymentCode;     // 支付密码
 }

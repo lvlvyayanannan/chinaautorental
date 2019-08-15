@@ -17,6 +17,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Component
 public class Brand implements Serializable {
-    private Integer id;
-    private String brandName;
+    private Integer id;    // 品牌id
+    private String brandName;   // 品牌名称
 }

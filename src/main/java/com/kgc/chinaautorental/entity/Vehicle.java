@@ -18,24 +18,24 @@ import java.util.Date;
 @NoArgsConstructor
 @Component
 public class Vehicle implements Serializable {
-    private Integer id;
-    private String brand;
-    private String demio;
-    private Date timeStyle;
-    private String allocation;
-    private Integer seating;
-    private Integer carDoor;
-    private String bunkers;
-    private Integer displacement;
-    private String bunkersNum;
-    private char skyLight;
-    private Integer fuelTank;
-    private Integer sound;
-    private Integer seat;
-    private String radar;
-    private Integer gasbag;
-    private String DVD;
-    private String GPS;
-    public Double price;
-    private Integer vehicleId;
+    private Integer id;             // 车辆id
+    private String brand;           // 品牌
+    private String demio;           // 车系
+    private Date timeStyle;         // 年代款
+    private String allocation;      // 配置款
+    private Integer seating;        // 座位数
+    private Integer carDoor;        // 车门数
+    private String bunkers;         // 燃料类型
+    private Integer displacement;   // 排量
+    private String bunkersNum;      // 燃料标号
+    private char skyLight;          // 天窗
+    private Integer fuelTank;       // 邮箱容量
+    private Integer sound;          // 音响
+    private Integer seat;           // 座椅
+    private String radar;           // 倒车雷达
+    private Integer gasbag;         // 气囊
+    private String DVD;             // DVC/CD
+    private String GPS;             // GPS导航
+    public Double price;            // 价格
+    private Integer vehicleId;      // 车型id
 }
