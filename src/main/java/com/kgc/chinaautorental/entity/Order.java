@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor  // 添加了有参构造
 @NoArgsConstructor      // 添加了无参构造
 @Component
-public class order implements Serializable {
+public class Order implements Serializable {
     private Integer id;     //订单中心主键id
     private Integer orderStatusId;      // 订单状态id
     public Double orderPrice;       // 订单总价

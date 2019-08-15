@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor  // 添加了有参构造
 @NoArgsConstructor      // 添加了无参构造
 @Component
-public class user implements Serializable {
+public class User implements Serializable {
     private Integer id;             // 我的信息主键id
     private String userName;        // 姓名
     private String idNumber;        // 证件号码 /身份证/驾驶证

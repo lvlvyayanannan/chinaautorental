@@ -16,7 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor  // 添加了有参构造
 @NoArgsConstructor      // 添加了无参构造
 @Component
-public class orderStatus implements Serializable {
+public class OrderStatus implements Serializable {
     private Integer id;             // 订单状态id
     private String orderStatus;     // 订单状态
 }

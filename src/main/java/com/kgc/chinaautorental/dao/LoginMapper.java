@@ -1,5 +1,6 @@
 package com.kgc.chinaautorental.dao;
 
+import com.kgc.chinaautorental.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -8,5 +9,5 @@ import org.apache.ibatis.annotations.Param;
  * @Date: Create in 11:50 2019/8/15
  */
 public interface LoginMapper {
-    void login(@Param("phone") String phone, @Param("password") String )
+    User getUserByPhone(@Param("phone") String phone);
 }
