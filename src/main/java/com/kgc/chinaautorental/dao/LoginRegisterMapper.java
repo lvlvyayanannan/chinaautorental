@@ -8,6 +8,10 @@ import org.apache.ibatis.annotations.Param;
  * @Description:
  * @Date: Create in 11:50 2019/8/15
  */
-public interface LoginMapper {
+public interface LoginRegisterMapper {
+    // 用户登录
     User getUserByPhone(@Param("phone") String phone);
+
+    // 用户注册
+    Integer userRegister(User user);
 }

@@ -14,5 +14,4 @@ public class ChinaautorentalApplication {
     public static void main(String[] args) {
         SpringApplication.run(ChinaautorentalApplication.class, args);
     }
-
 }

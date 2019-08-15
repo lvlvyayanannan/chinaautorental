@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kgc.chinaautorental.dao.LoginRegisterMapper">
+
+    <!--  用户登录 -->
+    <select id="getUserByPhone" resultType="com.kgc.chinaautorental.entity.User">
+        select u.phone,u.password from user u where phone = #{phone}
+    </select>
+
+    <!--  用户注册 -->
+    <insert id="userRegister" parameterType="com.kgc.chinaautorental.entity.User">
+        insert into user (<include refid="insertUser"/> ) values
+          (<include refid="insertValues"/> )
+    </insert>
+
+    <sql id="insertUser">
+       <trim suffixOverrides=",">
+           <if test="userName != null and userName != ''">
+               userName,
+           </if>
+           <if test="idNumber != null and idNumber != ''">
+               idNumber,
+           </if>
+           <if test="inDate != null and inDate != ''">
+               inDate,
+           </if>
+           <if test="phone != null and phone != ''">
+               phone,
+           </if>
+           <if test="email != null and email != ''">
+               email,
+           </if>
+           <if test="address != null and address != ''">
+               address,
+           </if>
+           <if test="emergencyName != null and emergencyName != ''">
+               emergencyName,
+           </if>
+           <if test="emergencyPhone != null and emergencyPhone != ''">
+               emergencyPhone,
+           </if>
+           <if test="password != null and password != ''">
+               password,
+           </if>
+           <if test="paymentCode != null and paymentCode != ''">
+               paymentCode,
+           </if>
+       </trim>
+    </sql>
+
+    <sql id="insertValues">
+        <trim suffixOverrides=",">
+            <if test="userName != null and userName != ''">
+                #{userName},
+            </if>
+            <if test="idNumber != null and idNumber != ''">
+                #{idNumber},
+            </if>
+            <if test="inDate != null and inDate != ''">
+                #{inDate},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                #{email},
+            </if>
+            <if test="address != null and address != ''">
+                #{address},
+            </if>
+            <if test="emergencyName != null and emergencyName != ''">
+                #{emergencyName},
+            </if>
+            <if test="emergencyPhone != null and emergencyPhone != ''">
+                #{emergencyPhone},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="paymentCode != null and paymentCode != ''">
+                #{paymentCode},
+            </if>
+        </trim>
+    </sql>
+
+
+
+
+
+</mapper>
