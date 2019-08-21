@@ -18,12 +18,12 @@ import java.util.Map;
 public class LoginRegisterServiceImpl implements LoginRegisterService {
 
     @Resource
-    private LoginRegisterMapper loginMapper;
+    private LoginRegisterMapper loginRegisterMapper;
 
     // 用户登录
     @Override
     public Map login(String phone, String password) {
-        User user = loginMapper.getUserByPhone(phone);
+        User user = loginRegisterMapper.getUserByPhone(phone);
         Map<String,Object> result = new HashMap<>();
         if (user != null) {
             if (user.getPassword().equals(password)) {
@@ -46,17 +46,23 @@ public class LoginRegisterServiceImpl implements LoginRegisterService {
     // 用户注册
     @Override
     public Map register(User user) {
-        Integer daoResult = loginMapper.userRegister(user);
         Map<String,Object> result = new HashMap<>();
-        if (daoResult > 0) {
-            result.put("result", true);
-            result.put("data",user);
-            result.put("mess", "注册成功");
+        if (loginRegisterMapper.getUserByPhone(user.getPhone()) == null) {
+            Integer daoResult = loginRegisterMapper.userRegister(user);
+            if (daoResult > 0) {
+                result.put("result", true);
+                result.put("data",user);
+                result.put("mess", "注册成功");
 
+            } else {
+                result.put("result", false);
+                result.put("data",null);
+                result.put("mess", "注册失败");
+            }
         } else {
             result.put("result", false);
             result.put("data",null);
-            result.put("mess", "注册失败");
+            result.put("mess", "该号码已经注册");
         }
         return result;
     }

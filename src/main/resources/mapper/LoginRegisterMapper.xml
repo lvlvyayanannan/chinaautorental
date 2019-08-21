@@ -24,7 +24,7 @@
            <if test="idNumber != null and idNumber != ''">
                idNumber,
            </if>
-           <if test="inDate != null and inDate != ''">
+           <if test="inDate != null">
                inDate,
            </if>
            <if test="phone != null and phone != ''">
@@ -59,7 +59,7 @@
             <if test="idNumber != null and idNumber != ''">
                 #{idNumber},
             </if>
-            <if test="inDate != null and inDate != ''">
+            <if test="inDate != null">
                 #{inDate},
             </if>
             <if test="phone != null and phone != ''">

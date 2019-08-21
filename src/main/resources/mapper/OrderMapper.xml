@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinaautorental.dao.OrderMapper">
+    <!-- 添加订单 -->
+    <insert id="insertOrder" parameterType="com.chinaautorental.entity.Order">
+        insert into  `order` (<include refid="insertOrder"/> ) values
+        (<include refid="insertValues"/> )
+    </insert>
+
+    <!-- 注: 传如日期参数不能 = ''-->
+    <sql id="insertOrder">
+        <trim suffixOverrides=",">
+            <if test="orderStatusId != null and orderStatusId != ''">
+                orderStatusId,
+            </if>
+            <if test="orderPrice != null and orderPrice != ''">
+                orderPrice,
+            </if>
+            <if test="orderNum != null and orderNum != ''">
+                `orderNum`,
+            </if>
+            <if test="rentalMsgId != null and rentalMsgId != ''">
+                rentalMsgId,
+            </if>
+            <if test="lease != null and lease != ''">
+                lease,
+            </if>
+            <if test="authorization != null and authorization != ''">
+                `authorization`,
+            </if>
+            <if test="vehicleMsgId != null and vehicleMsgId != ''">
+                vehicleMsgId,
+            </if>
+            <if test="pickTime != null">
+                pickTime,
+            </if>
+            <if test="pickShopId != null and pickShopId != ''">
+                pickShopId,
+            </if>
+            <if test="returnTime != null">
+                returnTime,
+            </if>
+            <if test="returnShopId != null and returnShopId != ''">
+                returnShopId,
+            </if>
+            <if test="limitMileage != null and limitMileage != ''">
+                `limitMileage`,
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="insertValues">
+        <trim suffixOverrides=",">
+            <if test="orderStatusId != null and orderStatusId != ''">
+                #{orderStatusId},
+            </if>
+            <if test="orderPrice != null and orderPrice != ''">
+                #{orderPrice},
+            </if>
+            <if test="orderNum != null and orderNum != ''">
+                #{orderNum},
+            </if>
+            <if test="rentalMsgId != null and rentalMsgId != ''">
+                #{rentalMsgId},
+            </if>
+            <if test="lease != null and lease != ''">
+                #{lease},
+            </if>
+            <if test="authorization != null and authorization != ''">
+                #{authorization},
+            </if>
+            <if test="vehicleMsgId != null and vehicleMsgId != ''">
+                #{vehicleMsgId},
+            </if>
+            <if test="pickTime != null">
+                #{pickTime},
+            </if>
+            <if test="pickShopId != null and pickShopId != ''">
+                #{pickShopId},
+            </if>
+            <if test="returnTime != null">
+                #{returnTime},
+            </if>
+            <if test="returnShopId != null and returnShopId != ''">
+                #{returnShopId},
+            </if>
+            <if test="limitMileage != null and limitMileage != ''">
+                #{limitMileage},
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 修改订单 -->
+    <update id="updateOrder" parameterType="com.chinaautorental.entity.Order">
+        update `order`
+          <set>
+              <if test="orderStatusId != null and orderStatusId != ''">
+                  orderStatusId = #{orderStatusId},
+              </if>
+              <if test="orderPrice != null and orderPrice != ''">
+                  orderPrice= #{orderPrice},
+              </if>
+              <if test="rentalMsgId != null and rentalMsgId != ''">
+                  rentalMsgId = #{rentalMsgId},
+              </if>
+              <if test="lease != null and lease != ''">
+                  lease = #{lease},
+              </if>
+              <if test="authorization != null and authorization != ''">
+                  `authorization` = #{authorization},
+              </if>
+              <if test="vehicleMsgId != null and vehicleMsgId != ''">
+                  vehicleMsgId = #{vehicleMsgId},
+              </if>
+              <if test="pickTime != null">
+                  pickTime = #{pickTime},
+              </if>
+              <if test="pickShopId != null and pickShopId != ''">
+                  pickShopId = #{pickShopId},
+              </if>
+              <if test="returnTime != null and returnTime != ''">
+                  returnTime = #{returnTime},
+              </if>
+              <if test="returnShopId != null">
+                  returnShopId = #{returnShopId},
+              </if>
+              <if test="limitMileage != null and limitMileage != ''">
+                  `limitMileage` = #{limitMileage},
+              </if>
+          </set>
+          where id = #{id}
+    </update>
+
+
+    <resultMap id="orderSta" type="com.chinaautorental.entity.OrderStatus">
+        <id property="id" column="osId"></id>
+        <result property="orderStatus" column="orderStatus"></result>
+    </resultMap>
+    <resultMap id="userInfo" type="com.chinaautorental.entity.User">
+        <id property="id" column="uid"></id>
+        <result property="userName" column="userName"></result>
+        <result property="phone" column="phone"></result>
+        <result property="address" column="address"></result>
+        <result property="email" column="email"></result>
+    </resultMap>
+    <resultMap id="order" type="com.chinaautorental.entity.Order">
+        <id property="id" column="id"></id>
+        <result property="orderStatusId" column="orderStatusId"></result>
+        <result property="orderPrice" column="orderPrice"></result>
+        <result property="lease" column="lease"></result>
+        <result property="orderNum" column="orderNum"></result>
+        <result property="authorization" column="authorization"></result>
+        <result property="pickTime" column="pickTime"></result>
+        <result property="returnTime" column="returnTime"></result>
+        <!--<result property="orderStatus" column="orderStatus"></result>-->
+        <association property="orderStatus" resultMap="orderSta"></association>
+        <association property="user" resultMap="userInfo"></association>
+    </resultMap>
+    <!-- 查询订单 -->
+    <select id="getOrderById" resultMap="order">
+        select o.id,o.rentalMsgId,o.orderStatusId,oo.id as osId,
+          oo.orderStatus,o.orderPrice,o.orderNum,u.id as uid,
+          u.userName,o.lease,o.authorization,b.brandName,v.seating,
+          o.pickTime,o.returnTime,c.cityName,s.shopName
+          from `order` o,orderstatus oo,	`user` u, vehicle v,brand b,shop s,district d,city c where
+            o.rentalMsgId = u.id AND
+            o.vehicleMsgId = v.id AND
+            v.brandId = b.id AND
+            o.pickShopId = s.id AND
+            s.districtId = d.id AND
+            d.cityId = c.id AND
+            o.orderStatusId=oo.id and o.id= #{id}
+    </select>
+</mapper>

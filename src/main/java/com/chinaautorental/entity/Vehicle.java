@@ -1,5 +1,6 @@
 package com.chinaautorental.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Vehicle implements Serializable {
     private Integer id;             // 车辆id
     private Integer brandId;           // 品牌id
     private String demio;           // 车系
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date timeStyle;         // 年代款
     private String allocation;      // 配置款
     private Integer seating;        // 座位数
@@ -37,5 +39,5 @@ public class Vehicle implements Serializable {
     private String DVD;             // DVC/CD
     private String GPS;             // GPS导航
     public Double price;            // 价格
-    private Integer vehicleId;      // 车型id
+    private Integer vehicleModelId;      // 车型id
 }

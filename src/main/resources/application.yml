@@ -5,6 +5,15 @@ spring:
     username: root
     password: Ll#3771056
 
+  # 日期格式保存到数据库
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #mvc:
+    #date-format: yyyy-MM-dd HH:mm:ss
+
+
+
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

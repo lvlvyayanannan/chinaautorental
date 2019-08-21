@@ -1,8 +1,11 @@
 package com.chinaautorental.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -21,6 +24,8 @@ public class User implements Serializable {
     private Integer id;             // 我的信息主键id
     private String userName;        // 姓名
     private String idNumber;        // 证件号码 /身份证/驾驶证
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date inDate;            // 有效期
     private String phone;           // 手机号码
     private String email;           // 电子邮件
