@@ -23,6 +23,6 @@ public interface VehicleMapper {
     public Integer insertVehicle(Vehicle vehicle);
     //修改车辆信息
     public Integer updateVehicle(Vehicle vehicle);
-    //删除车辆信息
+    //删除车辆信息 删除车辆信息
     public Integer deleteVehicle(Integer id);
 }
