@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinaautorental.dao.VehicleMapper">
+    <!--根据车系获取总数-->
+    <select id="getVehicleCountByDemio" parameterType="com.chinaautorental.entity.Vehicle"
+            resultType="java.lang.Integer">
+        select count(1) from vehicle
+        <where>
+            <if test="demio!=null and demio!=''">
+                demio like concat("%",#{demio},"%")
+            </if>
+        </where>
+    </select>
+    <!--根据id获取车辆信息-->
+    <select id="getVehicleInfoById" resultType="com.chinaautorental.entity.Vehicle">
+        select v.id,
+                v.brandId,
+                v.demio,
+                v.timeStyle,
+                v.allocation,
+                v.seating,
+                v.carDoor,
+                v.bunkers,
+                v.displacement,
+                v.bunkersNum,
+                v.skylight,
+                v.fueltank,
+                v.sound,
+                v.seat,
+                v.radar,
+                v.gasbag,
+                v.DVD,
+                v.GPS,
+                v.price,
+                v.vehicleModelId,
+                b.brandName,
+                m.modelName
+                from vehicle v left join brand b on v.brandId=b.id
+                left join vehiclemodel m on v.vehicleModelId=m.id
+                where v.id=#{id}
+    </select>
+    <!--分页查询-->
+    <select id="selectVehicleByPage" resultType="com.chinaautorental.entity.Vehicle">
+        select v.*,b.brandName,m.modelName from
+         vehicle v left join brand b on v.brandId=b.id
+                left join vehiclemodel m on v.vehicleModelId=m.id
+        <where>
+            <if test="demio!=null">
+                demio like concat("%",#{demio},"%")
+            </if>
+        </where>
+        limit #{index},#{pageSize}
+    </select>
+    <!--增加车辆-->
+    <insert id="insertVehicle" parameterType="com.chinaautorental.entity.Vehicle">
+        insert into vehicle (id,brandId,demio,timeStyle,allocation,seating,carDoor,bunkers,
+                            displacement,bunkersNum,skylight,fuelTank,sound,seat,radar,gasbag,
+                            DVD,GPS,price,vehicleModelId)
+                    values(#{id},#{brandId},#{demio},#{timeStyle},#{allocation},#{seating},#{carDoor},#{bunkers},
+                            #{displacement},#{bunkersNum},#{skylight},#{fuelTank},#{sound},#{seat},#{radar},#{gasbag},
+                            #{DVD},#{GPS},#{price},#{vehicleModelId})
+    </insert>
+    <!--修改车辆信息-->
+    <update id="updateVehicle" parameterType="com.chinaautorental.entity.Vehicle">
+        update vehicle
+        <set>
+            <if test="brandId!=null">
+                brandId=#{brandId}
+            </if>
+            <if test="demio!=null">
+                demio=#{demio}
+            </if>
+            <if test="timeStyle!=null">
+                timeStyle=#{timeStyle}
+            </if>
+            <if test="allocation!=null">
+                allocation=#{allocation}
+            </if>
+            <if test="carDoor!=null">
+                carDoor=#{carDoor}
+            </if>
+            <if test="bunkers!=null">
+                bunkers=#{bunkers}
+            </if>
+            <if test="displacement!=null">
+                displacement=#{displacement}
+            </if>
+            <if test="bunkersNum!=null">
+                bunkersNum=#{bunkersNum}
+            </if>
+            <if test="skylight!=null">
+                skylight=#{skylight}
+            </if>
+            <if test="fuelTank!=null">
+                fuelTank=#{fuelTank}
+            </if>
+            <if test="sound!=null">
+                sound=#{sound}
+            </if>
+            <if test="seat!=null">
+                seat=#{seat}
+            </if>
+            <if test="radar!=null">
+                radar=#{radar}
+            </if>
+            <if test="gasbag!=null">
+                gasbag=#{gasbag}
+            </if>
+            <if test="DVD!=null">
+                DVD=#{DVD}
+            </if>
+            <if test="GPS!=null">
+                GPS=#{GPS}
+            </if>
+            <if test="price!=null">
+                price=#{price}
+            </if>
+            <if test="vehicleModelId!=null">
+                vehicleModelId=#{vehicleModelId}
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <!--删除车辆信息-->
+    <delete id="deleteVehicle" >
+        delete  from vehicle where id=#{id}
+    </delete>
+</mapper>

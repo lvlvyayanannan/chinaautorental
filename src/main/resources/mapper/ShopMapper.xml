@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinaautorental.dao.ShopMapper">
+    <!--根据门店名获得总数-->
+    <select id="getShopCountByshopName"  resultType="java.lang.Integer">
+        select count(1) from shop where 1=1
+        <if test="shopName!=null and shopName!=''">
+            and shopName like concat("%",#{shopName},"%")
+        </if>
+    </select>
+    <!--根据id获得门店信息-->
+    <select id="getShopListById" parameterType="com.chinaautorental.entity.Shop"
+            resultType="com.chinaautorental.entity.Shop">
+        select s.id,
+                s.shopName,
+                s.contactNumber,
+                s.address,
+                s.startTime,
+                s.endTime,
+                s.districtId,
+                d.districtName
+                from shop s left join district d on  s.districtId=d.id where s.id=#{id}
+    </select>
+    <!--根据门店名称等分页查询-->
+    <select id="getShopListByPage" parameterType="com.chinaautorental.entity.Shop"
+            resultType="com.chinaautorental.entity.Shop">
+        select s.*,d.districtName from shop s left join district d on  s.districtId=d.id
+        <where>
+            <if test="shopName!=null and shopName!=''">
+                shopName like concat("%",#{shopName},"%")
+            </if>
+        </where>
+        limit #{index},#{pageSize}
+    </select>
+    <!--增加门店-->
+    <insert id="insertShop" parameterType="com.chinaautorental.entity.Shop">
+        insert into shop(id,shopName,contactNumber,address,startTime,districtId,endTime)
+                    values(#{id},#{shopName},#{contactNumber},#{address},#{startTime},#{districtId},#{endTime})
+    </insert>
+    <!--修改门店信息-->
+    <update id="updateShop" parameterType="com.chinaautorental.entity.Shop">
+        update shop
+        <set>
+            <if test="shopName!=null">
+                shopName=#{shopName},
+            </if>
+            <if test="contactNumber!=null">
+                contactNumber=#{contactNumber},
+            </if>
+            <if test="address!=null">
+                address=#{address},
+            </if>
+            <if test="startTime!=null">
+                startTime=#{startTime},
+            </if>
+            <if test="districtId!=null">
+                districtId=#{districtId},
+            </if>
+            <if test="endTime">
+                endTime=#{endTime},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <!--删除门店信息-->
+    <delete id="deleteShop" >
+        delete from shop where id=#{id}
+    </delete>
+</mapper>

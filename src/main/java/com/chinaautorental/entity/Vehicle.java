@@ -21,6 +21,7 @@ import java.util.Date;
 public class Vehicle implements Serializable {
     private Integer id;             // 车辆id
     private Integer brandId;           // 品牌id
+    private String brandName;       //车名
     private String demio;           // 车系
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date timeStyle;         // 年代款
@@ -30,14 +31,15 @@ public class Vehicle implements Serializable {
     private String bunkers;         // 燃料类型
     private Integer displacement;   // 排量
     private String bunkersNum;      // 燃料标号
-    private char skyLight;          // 天窗
+    private String skylight;          // 天窗
     private Integer fuelTank;       // 邮箱容量
     private Integer sound;          // 音响
-    private Integer seat;           // 座椅
+    private String seat;           // 座椅
     private String radar;           // 倒车雷达
     private Integer gasbag;         // 气囊
     private String DVD;             // DVC/CD
     private String GPS;             // GPS导航
     public Double price;            // 价格
     private Integer vehicleModelId;      // 车型id
+    private String modelName;          //车型名称
 }

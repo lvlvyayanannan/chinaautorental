@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinaautorental.dao.CityMapper">
+    <!--查询总数-->
+    <select id="getCityCountByCityName" resultType="Integer">
+        select count(1) from city where 1=1
+            <if test="cityName!=null and cityName!=''">
+                and cityName like concat('%',#{cityName},'%')
+            </if>
+    </select>
+    <!--查询城市信息-->
+    <select id="getCityInfoById" resultType="com.chinaautorental.entity.City">
+        select
+               c.id,
+               c.cityName,
+               c.provinceId,
+               p.provinceName
+               from city c left join province p on c.provinceId=p.id where c.id=#{id}
+    </select>
+    <!--增加城市信息-->
+    <insert id="insertCity" parameterType="com.chinaautorental.entity.City">
+        insert into city (cityName,provinceId) values(#{cityName},#{provinceId})
+    </insert>
+    <!--修改城市信息-->
+    <update id="updateCity" parameterType="com.chinaautorental.entity.City">
+        update city
+        <set>
+            <if test="cityName!=null and cityName!=''">
+                cityName=#{cityName},
+            </if>
+            <if test="provinceId !=0">
+                provinceId=#{provinceId},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+    <!--删除城市-->
+    <delete id="deleteCity" parameterType="com.chinaautorental.entity.City">
+        delete  from city where id=#{id}
+    </delete>
+    <!--分页查询-->
+    <select id="selectCityByPage" resultType="com.chinaautorental.entity.City">
+        select * from city
+        <where>
+            <if test="cityName!=null and cityName!=''">
+                cityName like concat("%",#{cityName},"%")
+            </if>
+        </where>
+        limit #{index}, #{pageSize}
+    </select>
+</mapper>

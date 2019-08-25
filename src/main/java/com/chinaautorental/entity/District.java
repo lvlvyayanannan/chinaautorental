@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
 /**
- * @Author: LiKai
+ * @Author: Lvyanan
  * @Description:
  * @Date: Create in 22:13 2019/8/14
  */
@@ -20,4 +20,5 @@ public class District implements Serializable {
     private Integer id;     // 地区id
     private String districtName;    // 地区名称
     private Integer cityId;  // 城市id
+    private String cityName;  //城市名称
 }

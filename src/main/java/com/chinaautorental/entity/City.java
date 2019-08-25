@@ -20,4 +20,5 @@ public class City implements Serializable {
     private Integer id;  // 城市id
     private String cityName;        // 城市名称
     private Integer provinceId;     // 省份id
+    private String provinceName;    //省份名称
 }

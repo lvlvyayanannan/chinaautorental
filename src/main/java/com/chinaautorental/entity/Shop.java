@@ -28,4 +28,5 @@ public class Shop implements Serializable {
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;          // 结束营业时间
     private Integer districtId;        // 地区id
+    private String districtName;     //地区名称
 }
